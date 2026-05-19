@@ -1,0 +1,14 @@
+/* Styling for links with a decorator "|" between each link */
+.navbar a {
+  font-family: var(--font-heading); /* Use Bebas Neue */
+  color: var(--text);
+  text-decoration: none;
+  padding: 0 10px;
+  position: relative;
+}
+
+.navbar a:not(:last-child)::after {
+  content: '|';
+  color: var(--text);
+  margin-left: 10px;
+}

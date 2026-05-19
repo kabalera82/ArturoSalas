@@ -1,0 +1,157 @@
+/* ===== MOBILE FIRST ===== */
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 4.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-cuaternario);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.navbar_deco {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: var(--font-display);
+}
+
+.navbar_brand {
+  color: var(--color-primario);
+  font-size: clamp(1.4rem, 7vw, 2rem); /* Ajusta el tamaño de fuente entre 1.4rem y 2rem según el ancho de la pantalla */
+  font-weight: 800;
+  line-height: 1; /* Ajusta el interlineado para evitar espacios adicionales entre las líneas */
+}
+
+.navbar_goals {
+  color: var(--color-quintenario);
+  font-size: clamp(0.75rem, 3.3vw, 1rem); /* Ajusta el tamaño de fuente entre 0.75rem y 1rem según el ancho de la pantalla */
+  line-height: 1; /* Ajusta el interlineado para mejorar la legibilidad */
+}
+
+.navbar_toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.6rem;
+  background: rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.navbar_toggle:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.navbar_toggle-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  display: block;
+}
+
+.navbar_menu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 1rem;
+  left: 1rem;
+  z-index: 20;
+  display: none;
+  background: var(--color-cuaternario);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.85rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.navbar_menu.open {
+  display: block;
+}
+
+.navbar_list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.6rem;
+  list-style: none;
+}
+
+.navbar_item {
+  width: 100%;
+}
+
+.navbar_link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.7rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.55rem;
+  color: #111827;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.navbar_link:hover,
+.navbar_link:focus-visible {
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--color-primario);
+  outline: none;
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 768px) {
+  .navbar {
+    padding-inline: 1.5rem;
+  }
+
+  .navbar_menu {
+    left: auto;
+    width: min(21rem, 70vw);
+  }
+}
+
+/* ===== DESKTOP ===== */
+@media (min-width: 1024px) {
+  .navbar {
+    padding-inline: 2rem;
+  }
+
+  .navbar_toggle {
+    display: none;
+  }
+
+  .navbar_menu {
+    position: static;
+    display: block;
+    width: auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .navbar_list {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0;
+  }
+
+  .navbar_link {
+    width: auto;
+    min-height: auto;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.94rem;
+  }
+}
