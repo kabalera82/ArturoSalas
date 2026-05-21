@@ -1,0 +1,59 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.btn--primary {
+  background: var(--color-terciario);
+  color: var(--color-blanco);
+  border-color: var(--color-terciario);
+}
+
+.btn--primary:hover {
+  background: transparent;
+  color: var(--color-terciario);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn--outline:hover {
+  background: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.btn--cta {
+  background: transparent;
+  color: var(--color-secundario);
+  border-color: var(--color-secundario);
+}
+
+.btn--cta:hover {
+  background: var(--color-secundario);
+  color: var(--color-fondo);
+}
+
+.btn--cuenta {
+  background: transparent;
+  color: var(--color-blanco);
+  border-color: var(--color-blanco);
+}
+
+.btn--cuenta:hover {
+  background: var(--color-blanco);
+  color: var(--color-fondo);
+}

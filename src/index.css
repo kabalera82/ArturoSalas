@@ -1,17 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Changa:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@800&display=swap');
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --color-background: rgb(17, 0, 255);
-  --color-primario: rgb(0, 102, 255);
-  --color-secundario: rgb(242, 247, 0);
-  --color-terciario: rgb(255, 0, 0);
-  --color-cuaternario: rgb(255, 255, 255);
-  --color-quintenario: rgb(0, 0, 0);
+  /* fondos */
+  --color-fondo: #0b1a2d;
+  --color-fondo-card: #091520;
+
+  /* marca */
+  --color-primario: #1565d8;
+  --color-secundario: #f5c518;
+  --color-terciario: #e03030;
+
+  /* texto */
+  --color-blanco: #ffffff;
+  --color-texto: #94a3b8;
+  --color-gris: #4a5568;
+
+  /* tipografía */
   --font-display: 'Changa', sans-serif;
   --font-heading: 'Bebas Neue', sans-serif;
-
 }
 
 * {
@@ -23,7 +29,7 @@
 }
 
 body {
-  background-color: var(--color-background);
+  background-color: var(--color-fondo);
 }
 
 
