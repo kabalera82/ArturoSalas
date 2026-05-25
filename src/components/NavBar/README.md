@@ -1,34 +1,41 @@
 # NavBar
 
-Header de navegación principal de la aplicación.
-
-## Comportamiento
-
-| Pantalla              | Comportamiento                                              |
-|-----------------------|-------------------------------------------------------------|
-| Mobile (< 1024px)     | Muestra botón hamburguesa — al hacer click despliega el menú |
-| Desktop (≥ 1024px)    | Menú siempre visible en línea horizontal, botón oculto      |
+Header responsive con marca, navegación y botón de cuenta.
 
 ## Estructura
 
 ```
-<header.navbar>
-  <div.navbar_deco>        ← Logo + subtítulo
-  <button.navbar_toggle>   ← Botón hamburguesa (solo mobile)
-  <nav.navbar_menu>        ← Contenedor del menú
-    <NavLinks />           ← Componente compartido de links
+header.navbar
+├── div.navbar_deco        → marca (nombre + subtítulo)
+├── nav.navbar_menu        → NavLinks con los navItems
+└── div.navbar_actions     → toggle hamburguesa + Button CTA
 ```
 
-## Archivos
+## Comportamiento
 
-| Archivo       | Propósito                                                      |
-|---------------|----------------------------------------------------------------|
-| `NavBar.tsx`  | Lógica del toggle y estructura JSX                             |
-| `NavBar.css`  | Estilos del navbar. Los overrides de `.navlinks_*` en desktop van aquí |
-| `navItems.ts` | Array de links que se pasan a `NavLinks`                       |
+- **Mobile** (< 1024px): el menú se oculta. El toggle hamburguesa abre/cierra el dropdown con estado local `isMenuOpen`. El botón "Mi cuenta" está oculto.
+- **Desktop** (≥ 1024px): el toggle se oculta. El menú se muestra inline con links en fila. El botón "Mi cuenta" es visible.
+
+## Props
+
+Ninguna. Consume `navItems` directamente desde `./navItems`.
+
+## Datos — navItems.ts
+
+```ts
+type NavItem = { label: string; href: string }
+```
+
+Items: Inicio, Entrenador, Noticias, Galería, Contacto, Tienda. Todos con anchors `#seccion`.
+
+## CSS relevante
+
+- `.navbar_menu.open` — dropdown visible en mobile
+- `.navbar_menu .navlinks_list` — se sobreescribe a `flex-direction: row` en desktop vía media query `@media (min-width: 1024px)`
+- `.navbar_menu .navlinks_item + .navlinks_item` — separador `border-left` entre links en desktop
 
 ## Dependencias
 
-- `NavLinks` — `../shared/NavLinks`
-- `navItems` — `./navItems`
-- `menu.png` — ícono SVG/PNG del botón hamburguesa
+- `NavLinks` (shared)
+- `Button` (shared), variante `cta`
+- Asset: `../../assets/menu.png` (icono hamburguesa)

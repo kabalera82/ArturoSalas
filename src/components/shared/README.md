@@ -1,47 +1,40 @@
-# shared/
+# Shared Components
 
-Componentes reutilizables que no pertenecen a ninguna sección específica.
-
----
+Componentes reutilizables sin lógica de negocio. Se usan en NavBar y Footer.
 
 ## NavLinks
 
-Lista de links de navegación. Se usa en `NavBar` y `Footer`.
-
-### Props
-
-| Prop          | Tipo           | Requerido | Descripción                                              |
-|---------------|----------------|-----------|----------------------------------------------------------|
-| `items`       | `NavItem[]`    | ✅        | Array de links a renderizar                              |
-| `activeHref`  | `string`       | ❌        | href del link activo — lo resalta con `--color-secundario` |
-| `onLinkClick` | `() => void`   | ❌        | Callback al hacer click (útil para cerrar menú en mobile)|
-| `className`   | `string`       | ❌        | Clase extra para variantes de estilo por contexto        |
-
-### Uso
+Renderiza una lista de links de navegación.
 
 ```tsx
 <NavLinks
-  items={navItems}
-  activeHref='#inicio'
-  onLinkClick={closeMenu}
+  items={navItems}       // NavItem[]  — requerido
+  activeHref="#inicio"   // string     — aplica clase .active al link coincidente
+  onLinkClick={fn}       // () => void — se llama al hacer click (útil para cerrar menú)
+  className="extra"      // string     — se añade a ul.navlinks_list
 />
 ```
 
-### Estilos base
+**CSS base:** `flex-direction: column`. Cada consumidor que necesite fila lo sobreescribe desde su propio contexto (ver NavBar y Footer).
 
-`NavLinks.css` define los estilos genéricos del componente.
-Cada contexto sobreescribe lo que necesita desde su propio CSS.
+---
 
-**Ejemplo — separadores solo en desktop (NavBar.css):**
-```css
-@media (min-width: 1024px) {
-  .navlinks_item + .navlinks_item {
-    border-left: 1px solid var(--color-secundario);
-  }
-}
+## Button
+
+Botón polimórfico: renderiza `<button>` o `<a>` según si recibe `href`.
+
+```tsx
+<Button variant="cta">Mi cuenta</Button>
+<Button variant="primary" href="/tienda">Ver tienda</Button>
 ```
 
-### Nota sobre `activeHref`
+### Variantes
 
-Actualmente es un valor estático (`'#inicio'`). Para que cambie
-según el scroll, se necesitaría un hook como `useActiveSection`.
+| Variante  | Color base           | Uso                        |
+|-----------|----------------------|----------------------------|
+| `primary` | `--color-terciario`  | Acción principal           |
+| `outline` | `--color-primario`   | Acción secundaria          |
+| `cta`     | `--color-secundario` | Call-to-action en navbar   |
+| `cuenta`  | `--color-blanco`     | Acceso a cuenta de usuario |
+
+Todos los estilos son outline-on-hover inverso (fondo sólido ↔ transparente).
