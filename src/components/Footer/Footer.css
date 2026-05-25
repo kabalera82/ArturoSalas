@@ -36,9 +36,5 @@
 @media (min-width:768px) {
   .foot_links .navlinks_list {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
-    gap: 0.25rem;
-}
+  }
 }
