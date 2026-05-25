@@ -1,0 +1,30 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #111;
+}
+
+.card video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.card__body {
+  padding: 1rem;
+}
+
+.card__title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card__description {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}

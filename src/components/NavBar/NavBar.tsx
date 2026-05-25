@@ -1,9 +1,10 @@
 ﻿import { useState } from 'react';
 import './NavBar.css';
+import { navItems } from './navItems';
 import menu from '../../assets/menu.png';
 import { NavLinks } from '../shared/NavLinks/NavLinks';
 import { Button } from '../shared/Button/Button';
-import { navItems } from './navItems';
+
 
 export const NavBar = () => {
 

@@ -1,18 +1,16 @@
-import './App.css'
-import { NavBar } from './components/NavBar/NavBar'
-import { Footer } from './components/Footer/Footer'
-import { HeroSection } from './components/HeroSection/HeroSection'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { PageLayout } from './layouts/PageLayout'
+import { HomePage } from './pages/HomePage'
 
-function App() {
+export const App = () => {
   return (
-    <div className="app">
-      <NavBar />
-      <main>
-        <HeroSection />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App

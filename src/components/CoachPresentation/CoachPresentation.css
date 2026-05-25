@@ -1,0 +1,12 @@
+.coach-presentation {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.coach-presentation__image img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  display: block;
+}
