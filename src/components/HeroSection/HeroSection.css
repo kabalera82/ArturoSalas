@@ -1,13 +1,20 @@
-/* ── Contenedor principal ── */
+/* Contenedor principal */
 .hero {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  background: transparent;
 }
 
-/* ── Bloque de texto ── */
+
+/* Bloque de texto */
 .hero__content {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
   width: 50%;
   height: auto;
   display: flex;
@@ -19,12 +26,20 @@
   margin-top: -5rem;
 }
 
+/* Logo OSSA */
 .hero__ossa {
   display: flex;
   flex-direction: column;
+  animation: slideFromLeft 0.8s ease-out forwards;
 }
 
-/* ── Tipografía ── */
+.hero__ossa img {
+  width: 100%;
+  height: auto;
+  max-width: 700px;
+}
+
+/* Tipografía */
 .hero__title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4rem);
@@ -48,21 +63,21 @@
   animation: slideFromLeft 0.6s ease-out 0.6s forwards;
 }
 
-/* ── Imagen ── */
-img {
-  width: 100%;
-  height: auto;
-  max-width: 700px;
-}
-
+/* Foto Arturo */
 .hero__image {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
   animation: slideFromRight 0.8s ease-out forwards;
 }
-.hero__ossa {
-  animation: slideFromLeft 0.8s ease-out forwards;
+
+.hero__image img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
 }
 
-/* ── Animaciones ── */
+/* Animaciones base (desktop y tablet) */
 @keyframes slideFromRight {
   from {
     transform: translateX(100vw);
@@ -73,6 +88,7 @@ img {
     opacity: 1;
   }
 }
+
 @keyframes slideFromLeft {
   from {
     transform: translateX(-100vw);
@@ -84,7 +100,15 @@ img {
   }
 }
 
-/* ── Mobile (≤ 600px): imagen como fondo, textos encima ── */
+/* Tablet (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .hero__content {
+    padding-left: 1.5rem;
+    margin-top: -2rem;
+  }
+}
+
+/* Mobile (600px o menos): imagen como fondo, textos encima */
 @media (max-width: 600px) {
   .hero {
     position: relative;
@@ -109,6 +133,7 @@ img {
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    animation: slideFromRight 0.8s ease-out forwards;
   }
 
   .hero__content {
@@ -118,9 +143,33 @@ img {
     padding: 1.5rem;
     align-items: center;
     text-align: center;
+    margin-top: 0;
   }
 
   .hero__text {
     font-size: 1rem;
+  }
+
+  /* Animaciones mobile */
+  @keyframes slideFromRight {
+    from {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideFromLeft {
+    from {
+      transform: translateX(-100vw);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 }

@@ -12,7 +12,9 @@ export const HeroSection = () => {
         </div>
         <h1 className="hero__title">DOMINA TU ARTE</h1>
         <h2 className="hero__subtitle">REFINA TU COMBATE</h2>
-        <p className="hero__text">Soy Arturo Salas. Campeón Mundial UWW de Grappling. Head coach de más de 300 atletas en España. Si quieres mejorar de verdad, estás en el sitio correcto.</p>
+        <p className="hero__text">
+          20 años separando lo que funciona de lo que no. Dos décadas refinando la técnica en el tatami. Lo que no servía, lo dejé en el camino. Así gané un campeonato del mundo. No te lo cuento para impresionarte; lo cuento porque sé exactamente qué se necesita para llegar a la cima, y sé cómo usar esa experiencia para ayudarte a ti. Más de 300 personas han pasado por mis clases. Cada una con sus miedos, sus objetivos y su ritmo. Ese es el camino que recorreré contigo.
+        </p>
         <Button variant="cta">Comenzar</Button>
       </div>
       

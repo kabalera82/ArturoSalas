@@ -75,6 +75,30 @@ Corrección: `HeroSection` solo tiene el hero. `HomePage` compone las tres secci
 
 ---
 
+---
+
+## HeroSection — estado actual del CSS
+
+### Responsive
+
+- **Desktop / tablet** (`> 600px`): layout en fila, imagen a la derecha, texto a la izquierda.
+- **Mobile** (`≤ 600px`): imagen como fondo a pantalla completa con overlay oscuro (`rgba(0,0,0,0.55)`), texto centrado encima con `z-index`.
+
+### Animaciones
+
+Todos los elementos entran desde la izquierda (`translateX(-100vw) → 0`) con delays escalonados:
+
+| Elemento | Delay |
+|---|---|
+| `.hero__image` | 0s |
+| `.hero__title` | 0.2s |
+| `.hero__subtitle` | 0.4s |
+| `.hero__text` | 0.6s |
+
+El keyframe `slideFromLeft` está definido en `HeroSection.css` y aplica a todos los tamaños de pantalla. En mobile, la imagen además tiene `position: absolute` para cubrir el fondo, pero mantiene la misma animación.
+
+---
+
 ## Pendiente
 
 - Renombrar `ChoachPresentation.tsx` → `CoachPresentation.tsx` y actualizar el import en `HomePage.tsx`

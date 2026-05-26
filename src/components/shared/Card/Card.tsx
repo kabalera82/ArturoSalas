@@ -10,17 +10,14 @@ type CardProps = {
   onClick?: () => void;
 }
 
-export const Card = ({ videoSrc, title, description, buttonLabel}: CardProps) => {
+export const Card = ({ videoSrc, title, description, buttonLabel }: CardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-
   return (
     <div
       className="card"
-      onMouseEnter={() => videoRef.current?.play()}
-      onMouseLeave={() => {
-        videoRef.current?.pause();
-        videoRef.current!.currentTime = 0;
-      }}
+      onMouseEnter={(e) => { if (e.buttons === 0) videoRef.current?.play(); }}
+      onMouseLeave={() => { videoRef.current?.pause(); videoRef.current!.currentTime = 0; }}
+      onClick={() => videoRef.current?.play()}
     >
       <video className="card__video"
         ref={videoRef}

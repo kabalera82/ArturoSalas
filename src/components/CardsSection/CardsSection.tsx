@@ -1,6 +1,6 @@
 import './CardsSection.css';
-import { Card } from '../shared/Card/Card';
-import { cardItems } from './cardItem';
+import { cardItems } from './cardItem'
+import { Card } from '../shared/Card/Card'
 
 export const CardsSection = () => {
   return (
@@ -18,5 +18,5 @@ export const CardsSection = () => {
         ))}
       </div>
     </section>
-  );
+  )
 }

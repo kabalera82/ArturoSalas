@@ -12,6 +12,15 @@ export const CoachPresentation = () => {
           height="800"
         />
       </div>
+      <div className="coach-presentation__palmarés">
+        <h2 className="coach-presentation__title">Palmarés Destacado</h2>
+        <ul className="coach-presentation__list">
+          <li>Campeón Mundial de Grappling UWW (Gi y No-Gi, 2017)</li>
+          <li>Triple Campeón Europeo de Grappling (2017, 2022)</li>
+          <li>Multicampeón Internacional IBJJF (Open Europeo, Londres y España)</li>
+          <li>Campeón Abu Dhabi Grand Slam (EAU, 2018)</li>
+        </ul>
+      </div>
     </section>
   )
 }
