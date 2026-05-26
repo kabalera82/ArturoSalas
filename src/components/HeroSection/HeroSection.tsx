@@ -12,9 +12,10 @@ export const HeroSection = () => {
         </div>
         <h1 className="hero__title">DOMINA TU ARTE</h1>
         <h2 className="hero__subtitle">REFINA TU COMBATE</h2>
-        <p className="hero__text">Coach de BJJ y Grappling en España. 20 años en el tatami para que tú no pierdas tiempo en lo que no funciona.</p>
+        <p className="hero__text">Soy Arturo Salas. Campeón Mundial UWW de Grappling. Head coach de más de 300 atletas en España. Si quieres mejorar de verdad, estás en el sitio correcto.</p>
         <Button variant="cta">Comenzar</Button>
       </div>
+      
       <div className="hero__image">
         <img
           src={arturoHero}

@@ -22,7 +22,7 @@ export const Card = ({ videoSrc, title, description, buttonLabel}: CardProps) =>
         videoRef.current!.currentTime = 0;
       }}
     >
-      <video
+      <video className="card__video"
         ref={videoRef}
         src={videoSrc}
         muted

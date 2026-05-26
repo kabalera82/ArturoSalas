@@ -1,19 +1,126 @@
+/* ── Contenedor principal ── */
 .hero {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-
+/* ── Bloque de texto ── */
 .hero__content {
+  width: 50%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  color: #fff;
+  font-family: var(--font-display);
+  padding-left: 3rem;
+  margin-top: -5rem;
 }
 
+.hero__ossa {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Tipografía ── */
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: -1rem;
+  opacity: 0;
+  animation: slideFromLeft 0.6s ease-out 0.2s forwards;
+}
+
+.hero__subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #ccc;
+  opacity: 0;
+  animation: slideFromLeft 0.6s ease-out 0.4s forwards;
+}
+
+.hero__text {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  opacity: 0;
+  animation: slideFromLeft 0.6s ease-out 0.6s forwards;
+}
+
+/* ── Imagen ── */
 img {
   width: 100%;
   height: auto;
-  max-width: 600px;
+  max-width: 700px;
+}
+
+.hero__image {
+  animation: slideFromRight 0.8s ease-out forwards;
+}
+.hero__ossa {
+  animation: slideFromLeft 0.8s ease-out forwards;
+}
+
+/* ── Animaciones ── */
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ── Mobile (≤ 600px): imagen como fondo, textos encima ── */
+@media (max-width: 600px) {
+  .hero {
+    position: relative;
+    flex-direction: column;
+    min-height: 100svh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
+  }
+
+  .hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__text {
+    font-size: 1rem;
+  }
 }
