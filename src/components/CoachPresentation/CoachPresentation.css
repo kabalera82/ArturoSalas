@@ -1,50 +1,78 @@
-/* Desktop y tablet: imagen izquierda, texto derecha */
+/* Desktop y tablet */
 .coach-presentation {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 6rem 2rem;
-  gap: 3rem;
-  margin-top: 4rem;
-  background-color: var(--color-fondo);
+  padding: 6rem 4rem;
+  gap: 4rem;
+  border-top: 1px solid var(--color-secundario);
+  text-align: center;
+}
+
+.coach-presentation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
 .coach-presentation__image {
+  position: relative;
+  z-index: 1;
   flex: 0 0 auto;
-  animation: slideFromLeft 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-100vw);
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
 }
 
 .coach-presentation__image img {
   width: 100%;
   height: auto;
-  max-width: 500px;
+  max-width: 520px;
   display: block;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(245, 197, 24, 0.25);
 }
 
 .coach-presentation__palmarés {
-  flex: 1;
-  color: var(--color-blanco);
-  animation: slideFromRight 0.8s ease-out forwards;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  color: #fff;
+  opacity: 0;
+  transform: translateX(100vw);
+  transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
 
 .coach-presentation__title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 1.5rem;
 }
 
 .coach-presentation__list {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: 1.1rem;
-  color: var(--color-texto);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  color: var(--color-secundario);
+  text-align: left;
 }
 
 .coach-presentation__list li {
-  padding-left: 1rem;
+  padding: 0.5rem 1rem;
   border-left: 3px solid var(--color-secundario);
+}
+
+/* Animación activada por scroll */
+.coach-presentation.is-visible .coach-presentation__image,
+.coach-presentation.is-visible .coach-presentation__palmarés {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Mobile: imagen de fondo, texto encima */
@@ -70,7 +98,9 @@
   .coach-presentation__image {
     position: absolute;
     inset: 0;
-    animation: slideFromRight 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateX(100vw);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
   }
 
   .coach-presentation__image img {
@@ -85,7 +115,9 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    animation: slideFromLeft 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-100vw);
+    transition: transform 0.8s ease-out 0.2s, opacity 0.8s ease-out 0.2s;
     color: #fff;
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
   }
@@ -95,12 +127,3 @@
   }
 }
 
-@keyframes slideFromLeft {
-  from { transform: translateX(-100vw); opacity: 0; }
-  to   { transform: translateX(0);      opacity: 1; }
-}
-
-@keyframes slideFromRight {
-  from { transform: translateX(100vw);  opacity: 0; }
-  to   { transform: translateX(0);      opacity: 1; }
-}

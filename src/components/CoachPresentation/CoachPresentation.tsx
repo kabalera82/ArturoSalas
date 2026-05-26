@@ -1,9 +1,27 @@
+import { useEffect, useRef } from 'react'
 import './CoachPresentation.css'
 import arturoChampion from '../../assets/champion_image.webp'
 
 export const CoachPresentation = () => {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sectionRef.current?.classList.add('is-visible')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="coach-presentation">
+    <section className="coach-presentation" ref={sectionRef}>
       <div className="coach-presentation__image">
         <img
           src={arturoChampion}

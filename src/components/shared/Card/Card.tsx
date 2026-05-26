@@ -31,7 +31,7 @@ export const Card = ({ videoSrc, title, description, buttonLabel }: CardProps) =
       <div className="card__body">
         <h3 className="card__title">{title}</h3>
         <p className="card__description">{description}</p>
-        <Button variant='cta'>{buttonLabel}</Button>
+        <Button variant='primary'>{buttonLabel}</Button>
       </div>
     </div>
   );
