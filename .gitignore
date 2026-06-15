@@ -5,6 +5,7 @@ backend/node_modules/
 # Builds
 frontend/dist/
 frontend/dist-ssr/
+backend/dist/
 
 # Variables de entorno
 .env
@@ -24,3 +25,5 @@ Thumbs.db
 .idea/
 *.suo
 *.sw?
+
+docs/

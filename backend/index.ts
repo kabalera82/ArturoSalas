@@ -1,44 +1,47 @@
-require('dotenv').config();
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import connectDB from './src/shared/db';
+import userRouter from './src/users/auth.routes';
 
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const connectDB = require('./src/shared/db');
 const app = express();
 
-
-// --- INSTANCIA EXPRESS ---
+// --- MIDDLEWARES ---
 app.use(express.json());
 
 // --- CORS ---
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') ?? ['http://localhost:5173'];
 
-app.use(cors ({
-  origin: (origin, cb) => {
-    if(!origin || allowedOrigins.includes(origin)) cb (null, true);
-    else cb(new Error(`CORS bloqueado: ${origin}`))
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS: origen no permitido → ${origin}`));
+    }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}))
-
-// --- MIDDLEWARES ---
-app.use(express.json());
+}));
 
 // --- RUTAS ---
+app.use('/api/users', userRouter);
+
 app.get('/', (_req, res) => {
   res.json({
     status: 'ok',
     api: mongoose.connection.readyState === 1 ? 'conectado' : 'desconectado',
-  })
-})
+  });
+});
 
 // --- CONTROL DE ERRORES ---
 app.use((_req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
 
-app.use((err, _req, res, _next) => {
+app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err.message);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
@@ -50,14 +53,12 @@ const startServer = async () => {
   try {
     await connectDB();
     app.listen(PORT, () => {
-      console.log(`🍺🍺🍺🍺 Servidor levantado en http://localhost:${PORT} 🍺🍺🍺🍺`);
+      console.log(`Servidor levantado en http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error('No se pudo iniciar la aplicacion por error de DB:', error);
-    // Si no conecta, terminamos el process
     process.exit(1);
   }
 };
 
-// --- ARRANQUE DEL SERVIDOR ---
 startServer();

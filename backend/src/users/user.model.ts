@@ -1,7 +1,8 @@
 import { Schema, model, HydratedDocument } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-// ------------ ENUMS ------------------------------------------------------
+
+// --- ENUMS ---
 
 export enum UserRole {
   USER    = 'user',
@@ -15,7 +16,8 @@ export enum UserStatus {
   BANNED  = 'baneado',
 }
 
-// ------------ INTERFACES -------------------------------------------------
+
+// --- INTERFACES ---
 
 export interface IShippingAddress {
   calle:           string;
@@ -37,7 +39,7 @@ export interface IUserProfile {
 export interface IUser {
   username: string;
   email:    string;
-  password?: string; // opcional para poder excluirlo en consultas con .select('-password')
+  password?: string; // opcional para no exponer el hash al convertir a JSON
   role:     UserRole;
   status:   UserStatus;
   profile:  IUserProfile;
@@ -49,7 +51,8 @@ export interface IUser {
 
 export type UserDocument = HydratedDocument<IUser>;
 
-// ------------ SUBESQUEMAS ------------------------------------------------
+
+// --- SUBESQUEMAS ---
 
 const ShippingAddressSchema = new Schema<IShippingAddress>({
   calle:            { type: String, required: true, trim: true },
@@ -68,7 +71,8 @@ const UserProfileSchema = new Schema<IUserProfile>({
   addresses: [ShippingAddressSchema],
 }, { _id: false });
 
-// ------------ ESQUEMA PRINCIPAL ------------------------------------------
+
+// --- ESQUEMA PRINCIPAL ---
 
 const userSchema = new Schema<IUser>({
   username: {
@@ -101,15 +105,14 @@ const userSchema = new Schema<IUser>({
   },
 }, { timestamps: true, versionKey: false });
 
-// ------------ HOOKS ------------------------------------------------------
 
-// hasheamos el password antes de guardar — solo si ha cambiado
+// --- HOOKS ---
+
 userSchema.pre('save', async function () {
   if (!this.isModified('password') || !this.password) return;
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-// eliminamos el password al serializar a JSON — nunca sale en las respuestas
 userSchema.set('toJSON', {
   transform: (_, ret) => {
     delete ret.password;
@@ -117,6 +120,7 @@ userSchema.set('toJSON', {
   },
 });
 
-// ------------ MODELO -----------------------------------------------------
+
+// --- MODELO ---
 
 export const User = model<IUser>('User', userSchema);
