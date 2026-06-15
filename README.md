@@ -1,30 +1,32 @@
-# Arturo Salas — Landing page
+# Arturo Salas — Web
 
-Landing page para entrenador de BJJ. React + TypeScript + Vite, sin frameworks de UI ni CSS-in-JS.
+Web para entrenador de BJJ. Monorepo con frontend en React y backend en Node.js.
 
-## Stack
+## Estructura
 
-- React 19
-- TypeScript 6
-- Vite 8
+```
+ArturoSalas/
+├── frontend/   React + TypeScript + Vite
+└── backend/    Node.js
+```
+
+## Frontend
+
+- React 19 + TypeScript + Vite
 - CSS plano con variables custom
 - pnpm
 
-## Comandos
-
 ```bash
+cd frontend
 pnpm dev        # servidor de desarrollo
-pnpm build      # compilar para producción (tsc + vite build)
+pnpm build      # compilar para producción
 pnpm preview    # previsualizar el build
 pnpm lint       # ESLint
 ```
 
-## Documentación
+## Backend
 
-| Archivo | Contenido |
-|---|---|
-| `docs/FIXES.md` | Estructura estándar del proyecto + lista de fixes pendientes |
-| `docs/components.md` | Referencia de componentes (props, estructura, dependencias) |
-| `docs/eslint.md` | Manual de la configuración de ESLint |
-| `docs/editorconfig.md` | Manual de EditorConfig + bug documentado |
-| `docs/guia.md` | Guía de arranque para juniors: cómo limpiar Vite y armar el NavBar |
+```bash
+cd backend
+pnpm dev        # servidor de desarrollo
+```

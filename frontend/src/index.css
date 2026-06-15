@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Changa:wght@800&display=swap');
 :root {
   /* fondos */
-  --color-fondo: #0b1a2d;
+  --color-fondo: #171b2200;
   --color-fondo-card: #091520;
 
   /* marca */
   --color-primario: #1565d8;
-  --color-secundario: #f5c518;
+  --color-secundario: #e2e0cd;
   --color-terciario: #e03030;
 
   /* texto */
   --color-blanco: #ffffff;
   --color-texto: #94a3b8;
   --color-gris: #4a5568;
+
 
   /* tipografía */
   --font-display: 'Changa', sans-serif;
@@ -33,6 +34,6 @@
 
 html, body, #root {
   height: 100%;
-  background-color: transparent;
+  background-color: var(--color-fondo);
 }
 

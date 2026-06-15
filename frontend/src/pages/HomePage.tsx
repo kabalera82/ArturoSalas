@@ -1,7 +1,6 @@
 import './HomePage.css'
 import { HeroSection } from '../components/HeroSection/HeroSection'
 import { CardsSection } from '../components/CardsSection/CardsSection'
-import { CoachPresentation } from '../components/CoachPresentation/CoachPresentation'
 import { videoItems } from './homeItem'
 
 export const HomePage = () => {
@@ -10,7 +9,6 @@ export const HomePage = () => {
       <video className="home__video-bg" src={videoItems[0].videoSrc} autoPlay loop muted playsInline />
       <HeroSection />
       <CardsSection />
-      <CoachPresentation />
     </div>
   )
 }
