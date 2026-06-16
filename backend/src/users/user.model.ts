@@ -54,7 +54,7 @@ export type UserDocument = HydratedDocument<IUser>;
 
 // --- SUBESQUEMAS ---
 
-const ShippingAddressSchema = new Schema<IShippingAddress>({
+const DireccionEnvioSchema = new Schema<IShippingAddress>({
   calle:            { type: String, required: true, trim: true },
   ciudad:           { type: String, required: true, trim: true },
   provincia:        { type: String, required: true, trim: true },
@@ -68,7 +68,7 @@ const UserProfileSchema = new Schema<IUserProfile>({
   lastName:  { type: String, required: true, trim: true },
   phone:     { type: String, trim: true },
   avatarUrl: { type: String, default: 'https://placehold.co/150' },
-  addresses: [ShippingAddressSchema],
+  addresses: [DireccionEnvioSchema],
 }, { _id: false });
 
 

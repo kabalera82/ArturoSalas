@@ -64,3 +64,38 @@ const startServer = async () => {
 };
 
 startServer();
+
+
+/**
+ Productos — tienes:
+  getProductos, getProductoById, crearProducto, updateProducto, deleteProducto
+
+  Faltan:
+
+  searchProductos — búsqueda por texto (ya tienes el índice text en el modelo, sin usar)
+  getProductosByCategoria — filtrar por categoría, es la navegación principal de cualquier tienda
+  getProductosByMarca — filtro por marca
+  updateStock — PATCH específico para stock, sin tocar el resto del producto
+  getProductosDestacados — productos con tag o flag especial para home/banners
+  Usuarios — tienes:
+  register, login, me, getAllUsers, updateUser, deleteUser
+
+  Faltan:
+
+  getUserById — consultar un usuario concreto (admin o perfil público)
+  updatePassword — cambio de contraseña separado del update general, necesita verificar la contraseña actual
+  addAddress / removeAddress — gestión de direcciones de envío, es un subdocumento en el modelo y necesita su propia lógica
+  updateStatus — PATCH solo para el campo status (activar, banear), es una acción de admin
+  forgotPassword / resetPassword — recuperación por email, necesita token temporal
+
+
+  PORT=3000
+  DB_URL=mongodb://$DATABASE_USER:$DATABASE_PASS@ac-tdlfvfd-shard-00-00.ih89jnt.mongodb.net:27017,ac-tdlfvfd-shard-00-01.ih89jnt.mongodb.net:27017,ac-tdlfvfd-shard-00-02.ih89jnt.mongodb.net:27017/?ssl=true&replicaSet=atlas-nj3hov-shard-0&authSource=admin&appName=tienda
+  DATABASE_USER=kabalera
+  DATABASE_PASS=04AcjWCMYasMud5h
+  JWT_SECRET=La_Super_Contraseña_Super_Secreta
+  ALLOWED_ORIGINS=http://localhost:5173
+  CLOUDINARY_API_KEY=794227363875353
+  CLOUDINARY_API_SECRET=s3uNk3whexMV9SEvsmJ6iOHKvVI
+  CLOUDINARY_CLOUD_NAME=dw6qgshkz
+ */
