@@ -75,7 +75,7 @@ const usuarios = [
 
 const productos = [
   {
-    codigoArticulo: 1001,
+    codigoArticulo: 2001,
     name: 'Guantes de boxeo Venum Contender',
     price: 49.99,
     description: 'Guantes de boxeo profesionales con relleno de espuma multicapa. Ideales para entrenamiento y sparring.',
@@ -99,7 +99,7 @@ const productos = [
     tags: ['BJJ', 'grappling'],
   },
   {
-    codigoArticulo: 1003,
+    codigoArticulo: 5003,
     name: 'Botas de boxeo Adidas Box Hog 4',
     price: 89.99,
     description: 'Botas de boxeo con suela antideslizante y tobillera reforzada para máximo soporte.',
@@ -111,7 +111,7 @@ const productos = [
     tags: ['destacado', 'boxeo'],
   },
   {
-    codigoArticulo: 1004,
+    codigoArticulo: 2004,
     name: 'Casco de boxeo RDX Pro',
     price: 59.99,
     description: 'Casco con protección completa: frente, mejillas y mentón. Certificado para sparring.',
@@ -135,7 +135,7 @@ const productos = [
     tags: ['MMA', 'kickboxing'],
   },
   {
-    codigoArticulo: 1006,
+    codigoArticulo: 3006,
     name: 'Sudadera con capucha Artur Salas Team',
     price: 44.99,
     description: 'Sudadera oficial del equipo. Algodón grueso 320g/m², interior suave y logo bordado.',
@@ -147,7 +147,7 @@ const productos = [
     tags: ['destacado', 'lifestyle'],
   },
   {
-    codigoArticulo: 1007,
+    codigoArticulo: 2007,
     name: 'Espinilleras Muay Thai Fairtex SP5',
     price: 54.99,
     description: 'Espinilleras de cuero sintético con relleno de espuma de alta densidad. Talla única ajustable.',
@@ -159,7 +159,7 @@ const productos = [
     tags: ['muay thai', 'kickboxing'],
   },
   {
-    codigoArticulo: 1008,
+    codigoArticulo: 4008,
     name: 'Mochila de deporte Artur Salas Pro',
     price: 69.99,
     description: 'Mochila 45L con compartimento para ropa mojada, portaguantes y bolsillo lateral para botella.',
@@ -171,7 +171,7 @@ const productos = [
     tags: ['destacado', 'lifestyle'],
   },
   {
-    codigoArticulo: 1009,
+    codigoArticulo: 2009,
     name: 'Vendas de boxeo Fighter 4.5m',
     price: 9.99,
     description: 'Vendas elásticas de 4.5 metros para protección de muñecas y nudillos. Pack de 2 unidades.',

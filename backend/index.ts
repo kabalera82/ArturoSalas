@@ -64,27 +64,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-
-/**
- Productos — tienes:
-  getProductos, getProductoById, crearProducto, updateProducto, deleteProducto
-
-  Faltan:
-
-  searchProductos — búsqueda por texto (ya tienes el índice text en el modelo, sin usar)
-  getProductosByCategoria — filtrar por categoría, es la navegación principal de cualquier tienda
-  getProductosByMarca — filtro por marca
-  updateStock — PATCH específico para stock, sin tocar el resto del producto
-  getProductosDestacados — productos con tag o flag especial para home/banners
-  Usuarios — tienes:
-  register, login, me, getAllUsers, updateUser, deleteUser
-
-  Faltan:
-
-  getUserById — consultar un usuario concreto (admin o perfil público)
-  updatePassword — cambio de contraseña separado del update general, necesita verificar la contraseña actual
-  addAddress / removeAddress — gestión de direcciones de envío, es un subdocumento en el modelo y necesita su propia lógica
-  updateStatus — PATCH solo para el campo status (activar, banear), es una acción de admin
-  forgotPassword / resetPassword — recuperación por email, necesita token temporal
-*/

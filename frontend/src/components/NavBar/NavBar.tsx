@@ -1,17 +1,32 @@
-﻿import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './NavBar.css';
 import { navItems } from './navItems';
 import menu from '../../assets/menu.png';
 import { NavLinks } from '../shared/NavLinks/NavLinks';
 import { Button } from '../shared/Button/Button';
-
+import { LoginPanel } from './LoginPanel/LoginPanel';
+import { useAuth } from '../../context/AuthContext';
 
 export const NavBar = () => {
+  const { isAuthenticated, user, logout } = useAuth();
+  const [isMenuOpen, setIsMenuOpen]   = useState(false);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu  = () => setIsMenuOpen((v) => !v);
+  const closeMenu   = () => setIsMenuOpen(false);
+  const togglePanel = () => setIsPanelOpen((v) => !v);
+  const closePanel  = () => setIsPanelOpen(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        closePanel();
+      }
+    };
+    if (isPanelOpen) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isPanelOpen]);
 
   return (
     <header className='navbar'>
@@ -25,7 +40,7 @@ export const NavBar = () => {
         <NavLinks items={navItems} activeHref='#inicio' onLinkClick={closeMenu} />
       </nav>
 
-      <div className='navbar_actions'>
+      <div className='navbar_actions' ref={panelRef}>
         <button
           className='navbar_toggle'
           type='button'
@@ -35,7 +50,16 @@ export const NavBar = () => {
           <img src={menu} alt='Menú' className='navbar_toggle-icon' />
         </button>
 
-        <Button variant='cta'>Mi cuenta &gt;</Button>
+        {isAuthenticated ? (
+          <div className='navbar_user'>
+            <span className='navbar_username'>{user?.username}</span>
+            <Button variant='cta' onClick={logout}>Salir</Button>
+          </div>
+        ) : (
+          <Button variant='cta' onClick={togglePanel}>Mi cuenta &gt;</Button>
+        )}
+
+        {isPanelOpen && !isAuthenticated && <LoginPanel onClose={closePanel} />}
       </div>
 
     </header>

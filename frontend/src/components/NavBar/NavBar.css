@@ -48,8 +48,24 @@
 }
 
 .navbar_actions {
+  position: relative;
   display: flex;
   align-items: center;
+}
+
+.navbar_user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar_username {
+  color: var(--color-secundario);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .navbar_toggle {
