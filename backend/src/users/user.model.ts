@@ -44,8 +44,10 @@ export interface IUser {
   status:   UserStatus;
   profile:  IUserProfile;
   metadata: {
-    lastLogin?:    Date;
-    emailVerified: boolean;
+    lastLogin?:             Date;
+    emailVerified:          boolean;
+    resetPasswordToken?:    string;
+    resetPasswordExpires?:  Date;
   };
 }
 
@@ -100,8 +102,10 @@ const userSchema = new Schema<IUser>({
   status: { type: String, enum: Object.values(UserStatus), default: UserStatus.PENDING },
   profile: { type: UserProfileSchema, required: true },
   metadata: {
-    lastLogin:     { type: Date },
-    emailVerified: { type: Boolean, default: false },
+    lastLogin:            { type: Date },
+    emailVerified:        { type: Boolean, default: false },
+    resetPasswordToken:   { type: String, select: false },
+    resetPasswordExpires: { type: Date,   select: false },
   },
 }, { timestamps: true, versionKey: false });
 
