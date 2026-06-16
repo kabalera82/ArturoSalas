@@ -1,6 +1,6 @@
 
 import { Router } from 'express';
-import { register, login, me } from './auth.controller';
+import { register, login, me, getAllUsers, updateUser, deleteUser } from './auth.controller';
 import { isAuth } from '../shared/auth.middleware';
 
 const router = Router();
@@ -12,7 +12,9 @@ router.post('/login',    login);
 
 // --- RUTAS PROTEGIDAS --- 
 
-// GET /api/auth/me — 
-router.get('/me', isAuth, me);
+router.get('/me',       isAuth, me);
+router.get('/',         isAuth, getAllUsers);
+router.put('/:id',      isAuth, updateUser);
+router.delete('/:id',   isAuth, deleteUser);
 
 export default router;

@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import connectDB from './src/shared/db';
 import userRouter from './src/users/auth.routes';
+import productoRouter from './src/products/producto.routes';
 
 const app = express();
 
@@ -27,7 +28,8 @@ app.use(cors({
 }));
 
 // --- RUTAS ---
-app.use('/api/users', userRouter);
+app.use('/api/users',    userRouter);
+app.use('/api/productos', productoRouter);
 
 app.get('/', (_req, res) => {
   res.json({

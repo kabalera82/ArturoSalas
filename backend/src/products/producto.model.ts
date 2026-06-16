@@ -81,4 +81,4 @@ const ProductoSchema = new Schema<IProduct>(
 // Índice de texto compuesto para el buscador global de la tienda
 ProductoSchema.index({ name: "text", description: "text", subcategoria: "text", tags: "text" });
 
-export const ProductoModel = model<IProduct>("Producto", ProductoSchema);
+export const ProductoModelo = model<IProduct>("Producto", ProductoSchema);

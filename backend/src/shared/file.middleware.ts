@@ -17,7 +17,7 @@ const storage = new CloudinaryStorage({
         allowedFormats: ["jpg", "png", "jpeg", "webp"],
     },
 });
-// 7.2 Creamos la función 'upload' que usaremos en las rutas
+
 const upload = multer({ storage });
-// 7.2 Exportamos la función 'upload' para usarla en las rutas
+
 module.exports = upload;

@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import { User } from './user.model';
 import { generateToken } from '../shared/token.utils';
 
-// --- REGISTER ---
+// --- REGISTRO ---
 
 // POST /api/auth/register 
 export const register = async (req: Request, res: Response): Promise<void> => {
@@ -106,5 +106,29 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
     res.status(200).json({ message: 'Usuario eliminado' });
   } catch (error) {
     res.status(500).json({ error: 'Error eliminando usuario', detail: (error as Error).message });
+  }
+};
+
+// --- UPDATE USER ---
+
+export const updateUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const { username, email, profile, role, status } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      { username, email, profile, role, status },
+      { new: true, runValidators: true }
+    );
+
+    if (!user) {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+      return;
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Error actualizando usuario', detail: (error as Error).message });
   }
 };

@@ -1,10 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from './token.utils';
 
-// ------------ IS AUTH ----------------------------------------------------
-
-// verifica el JWT y pone el payload decodificado en req.user
-// no hace query a la BD — si el controlador necesita el usuario completo lo consulta él mismo
+// --- IS AUTH ---
 export const isAuth = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.headers.authorization?.replace('Bearer ', '');
 
@@ -21,9 +18,7 @@ export const isAuth = (req: Request, res: Response, next: NextFunction): void =>
   }
 };
 
-// ------------ IS ADMIN ---------------------------------------------------
-
-// verifica que el rol del payload es admin — siempre va después de isAuth
+// --- IS ADMIN ---
 export const isAdmin = (req: Request, res: Response, next: NextFunction): void => {
   if (req.user?.rol !== 'admin') {
     res.status(403).json({ error: 'Solo administradores' });
