@@ -1,39 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Changa:wght@800&display=swap');
+
 :root {
-  /* fondos */
-  --color-fondo: #171b2200;
-  --color-fondo-card: #091520;
+  /* ── Fondos ─────────────────────────────────────────────── */
+  --color-fondo:      transparent;   /* body — el video de home traspasa */
+  --color-fondo-card: #111111;       /* cards, paneles flotantes, dropdowns */
 
-  /* marca */
-  --color-primario: #1565d8;
-  --color-secundario: #e2e0cd;
-  --color-terciario: #e03030;
+  /* ── Paleta ─────────────────────────────────────────────── */
+  --color-blanco:     #ffffff;
+  --color-primario:   #ffffff;       /* blanco — texto principal, borders activos */
+  --color-secundario: #e0e0e0;       /* gris claro — títulos de sección */
+  --color-terciario:  #cc2222;       /* rojo sangre — único acento */
 
-  /* texto */
-  --color-blanco: #ffffff;
-  --color-texto: #94a3b8;
-  --color-gris: #4a5568;
+  /* ── Texto y bordes ─────────────────────────────────────── */
+  --color-texto:      #6b6b6b;       /* gris medio — texto secundario, placeholders */
+  --color-gris:       #2a2a2a;       /* gris oscuro — borders, separadores */
 
-
-  /* tipografía */
+  /* ── Tipografía ─────────────────────────────────────────── */
   --font-display: 'Changa', sans-serif;
   --font-heading: 'Bebas Neue', sans-serif;
-  --font-normal: 'sans-serif';
+  --font-normal:  sans-serif;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-    font-family: var(--font-normal);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: var(--font-normal);
 }
 
-
+html {
+  background: #0a0a0a;   /* negro base — se ve cuando body es transparente */
+}
 
 html, body, #root {
   height: 100%;
   background-color: var(--color-fondo);
 }
-
