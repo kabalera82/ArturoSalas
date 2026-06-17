@@ -1,8 +1,9 @@
 import type { RespuestaLogin } from '../types/auth.types';
-import { API_BASE } from '../config/api';
+
+const BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3000/api';
 
 export const login = async (username: string, password: string): Promise<RespuestaLogin> => {
-  const res = await fetch(`${API_BASE}/users/login`, {
+  const res = await fetch(`${BASE}/users/login`, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify({ username, password }),
