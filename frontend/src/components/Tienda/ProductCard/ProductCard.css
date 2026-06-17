@@ -1,0 +1,127 @@
+.product-card {
+  position: relative;
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+  transition: border-color 0.25s, transform 0.25s;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  border-color: var(--color-terciario);
+  transform: translateY(-3px);
+}
+
+/* ── Imagen ───────────────────────────────── */
+.product-card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  filter: sepia(60%) grayscale(30%);
+  transition: filter 0.3s ease;
+}
+
+.product-card:hover .product-card__img {
+  filter: none;
+}
+
+/* Badge de stock bajo — aparece sobre la imagen */
+.product-card__badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: var(--color-terciario);
+  color: var(--color-blanco);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+}
+
+/* ── Cuerpo ───────────────────────────────── */
+.product-card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+}
+
+.product-card__nombre {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-secundario);
+  line-height: 1.2;
+}
+
+.product-card__marca {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-texto);
+}
+
+.product-card__descripcion {
+  font-size: 0.82rem;
+  color: var(--color-texto);
+  line-height: 1.4;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  gap: 0.5rem;
+}
+
+.product-card__precio {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-blanco);
+}
+
+/* ── Botón ────────────────────────────────── */
+.product-card__btn {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--color-terciario);
+  border-radius: 2px;
+  background: var(--color-terciario);
+  color: var(--color-blanco);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.product-card__btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px var(--color-terciario), 0 0 24px rgba(224, 48, 48, 0.4);
+}
+
+.product-card__btn:disabled {
+  background: var(--color-gris);
+  border-color: var(--color-gris);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
