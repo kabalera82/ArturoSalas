@@ -1,12 +1,13 @@
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.5rem;
-  background: var(--color-fondo);
-  border-bottom: 1px solid var(--color-secundario);
-  padding: 1rem 4rem 1rem 2rem; 
+  padding: 1rem 4rem 1rem 2rem;
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid var(--color-gris);
 }
 
 .navbar_deco {
@@ -20,17 +21,17 @@
   font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 800;
-  padding: 0 0 0 2rem; 
+  padding: 0 0 0 2rem;
 }
 
 .navbar_goals {
-  color: var(--color-secundario);
+  color: var(--color-texto);
   font-family: var(--font-display);
   font-size: 1rem;
-  padding: 0 0 0 2rem; 
+  padding: 0 0 0 2rem;
 }
 
-/* dropdown mobile */
+/* Dropdown móvil */
 .navbar_menu {
   position: absolute;
   top: 100%;
@@ -38,9 +39,9 @@
   right: 0;
   z-index: 20;
   display: none;
-  background: var(--color-fondo);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  background: #0a0a0a;
+  border-top: 1px solid var(--color-gris);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 
 .navbar_menu.open {
@@ -51,21 +52,7 @@
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.navbar_user {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.navbar_username {
-  color: var(--color-secundario);
-  font-family: var(--font-display);
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  gap: 0.5rem;
 }
 
 .navbar_toggle {
@@ -85,19 +72,20 @@
   height: 1.4rem;
 }
 
-/* mobile: ocultar botón de cuenta */
-.navbar_actions .btn {
+/* Mobile: ocultar botones de icono */
+.navbar_actions > .boton-usuario,
+.navbar_actions > .boton-carrito {
   display: none;
 }
-
 
 @media (min-width: 768px) {
   .navbar_toggle {
     display: none;
   }
 
-  .navbar_actions .btn {
-    display: inline-flex;
+  .navbar_actions > .boton-usuario,
+  .navbar_actions > .boton-carrito {
+    display: block;
   }
 
   .navbar_menu {
