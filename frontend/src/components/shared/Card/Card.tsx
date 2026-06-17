@@ -7,7 +7,6 @@ type CardProps = {
   title: string;
   description: string;
   buttonLabel: string;
-  onClick?: () => void;
 }
 
 export const Card = ({ videoSrc, title, description, buttonLabel }: CardProps) => {

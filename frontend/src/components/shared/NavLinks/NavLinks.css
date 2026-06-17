@@ -17,5 +17,5 @@
 
 .navlinks_link:hover,
 .navlinks_link.active {
-  color: var(--color-secundario);
+  color: var(--color-terciario);
 }

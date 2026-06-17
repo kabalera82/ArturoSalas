@@ -6,9 +6,9 @@ export const CardsSection = () => {
   return (
     <section className="cards-section">
       <div className="cards-section__grid">
-        {cardItems.map((item, index) => (
+        {cardItems.map((item) => (
           <Card
-            key={index}
+            key={item.title}
             videoSrc={item.videoSrc}
             title={item.title}
             description={item.description}

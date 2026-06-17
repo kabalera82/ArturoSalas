@@ -13,6 +13,7 @@
   border: 1px solid transparent;
 }
 
+/* Relleno rojo — acción principal */
 .btn--primary {
   background: var(--color-terciario);
   color: var(--color-blanco);
@@ -22,38 +23,31 @@
 
 .btn--primary:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 12px var(--color-terciario), 0 0 28px rgba(224, 48, 48, 0.5);
+  box-shadow: 0 0 12px var(--color-terciario), 0 0 28px rgba(204, 34, 34, 0.4);
 }
 
+/* Outline blanco — acción secundaria */
 .btn--outline {
   background: transparent;
   color: var(--color-primario);
   border-color: var(--color-primario);
+  transition: background 0.2s, color 0.2s;
 }
 
 .btn--outline:hover {
   background: var(--color-primario);
-  color: var(--color-blanco);
+  color: var(--color-fondo-card);
 }
 
+/* CTA hero — outline blanco grande */
 .btn--cta {
   background: transparent;
   color: var(--color-secundario);
   border-color: var(--color-secundario);
+  transition: background 0.2s, color 0.2s;
 }
 
 .btn--cta:hover {
   background: var(--color-secundario);
-  color: var(--color-fondo);
-}
-
-.btn--cuenta {
-  background: transparent;
-  color: var(--color-blanco);
-  border-color: var(--color-blanco);
-}
-
-.btn--cuenta:hover {
-  background: var(--color-blanco);
-  color: var(--color-fondo);
+  color: var(--color-fondo-card);  /* negro — evita el bug de fondo transparente */
 }

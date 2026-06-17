@@ -1,6 +1,6 @@
 import './Button.css';
 
-type ButtonVariant = 'primary' | 'outline' | 'cta' | 'cuenta';
+type ButtonVariant = 'primary' | 'outline' | 'cta';
 
 type ButtonProps = {
   variant: ButtonVariant;

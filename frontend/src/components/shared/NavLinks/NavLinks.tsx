@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
+import type { NavItem } from '../../../types/navegacion.types';
 import './NavLinks.css';
-
-type NavItem = { label: string; href: string };
 
 type NavLinksProps = {
   items: NavItem[];
@@ -9,20 +9,23 @@ type NavLinksProps = {
   className?: string;
 };
 
-export const NavLinks = ({ items, activeHref, onLinkClick, className }: NavLinksProps) => {
-  return (
-    <ul className={`navlinks_list ${className || ''}`}>
-      {items.map((item) => (
+export const NavLinks = ({ items, activeHref, onLinkClick, className }: NavLinksProps) => (
+  <ul className={`navlinks_list ${className ?? ''}`}>
+    {items.map((item) => {
+      const claseActiva = `navlinks_link${item.href === activeHref ? ' active' : ''}`;
+      return (
         <li className='navlinks_item' key={item.href}>
-          <a
-            className={`navlinks_link${item.href === activeHref ? ' active' : ''}`}
-            href={item.href}
-            onClick={onLinkClick}
-          >
-            {item.label}
-          </a>
+          {item.href.startsWith('#') ? (
+            <a className={claseActiva} href={item.href} onClick={onLinkClick}>
+              {item.label}
+            </a>
+          ) : (
+            <Link className={claseActiva} to={item.href} onClick={onLinkClick}>
+              {item.label}
+            </Link>
+          )}
         </li>
-      ))}
-    </ul>
-  );
-};
+      );
+    })}
+  </ul>
+);
