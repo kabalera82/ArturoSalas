@@ -2,7 +2,7 @@ import "./Card.css";
 import { Button } from "../Button/Button";
 import { useRef } from "react";
 
-type CardProps = {
+export type CardProps = {
   videoSrc: string;
   title: string;
   description: string;
@@ -15,7 +15,7 @@ export const Card = ({ videoSrc, title, description, buttonLabel }: CardProps) =
     <div
       className="card"
       onMouseEnter={(e) => { if (e.buttons === 0) videoRef.current?.play(); }}
-      onMouseLeave={() => { videoRef.current?.pause(); videoRef.current!.currentTime = 0; }}
+      onMouseLeave={() => { const v = videoRef.current; if (v) { v.pause(); v.currentTime = 0; } }}
       onClick={() => videoRef.current?.play()}
     >
       <video className="card__video"

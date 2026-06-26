@@ -1,7 +1,7 @@
 import './ShopPage.css';
 import { useState }     from 'react';
-import { useProductos } from '../../hooks/useProductos';
-import { ProductCard }  from '../../components/Tienda/ProductCard/ProductCard';
+import { useProductos } from './useProductos';
+import { ProductCard }  from './ProductCard/ProductCard';
 
 const TODAS = 'TODAS';
 

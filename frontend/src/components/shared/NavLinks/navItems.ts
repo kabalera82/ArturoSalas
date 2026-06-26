@@ -1,4 +1,7 @@
-import type { NavItem } from '../types/navegacion.types';
+export interface NavItem {
+  label: string;
+  href: string;
+}
 
 export const navItems: NavItem[] = [
   { label: 'Inicio',          href: '/' },
@@ -7,4 +10,5 @@ export const navItems: NavItem[] = [
   { label: 'Patrocinadores',  href: '#patrocinadores' },
   { label: 'Contacto',        href: '#contacto' },
   { label: 'Tienda',          href: '/shop' },
+  { label: 'Cuenta',          href: '/cuenta' },
 ];

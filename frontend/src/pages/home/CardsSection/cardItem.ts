@@ -1,11 +1,6 @@
-export type CardItem = {
-  videoSrc: string;
-  title: string;
-  description: string;
-  buttonLabel: string;
-}
+import type { CardProps } from '../../../components/shared/Card/Card';
 
-export const cardItems: CardItem[] = [
+export const cardItems: CardProps[] = [
   {
     videoSrc: '/videos/video01.mp4',
     title: 'Arturo Salas',
@@ -30,5 +25,4 @@ export const cardItems: CardItem[] = [
     description: 'Accede a programas de formación y desarrollo para mejorar tus habilidades en el tatami.',
     buttonLabel: 'Explora la academia'
   },
-]
-
+];

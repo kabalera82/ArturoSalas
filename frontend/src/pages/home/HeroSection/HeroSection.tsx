@@ -1,7 +1,7 @@
-import './HeroSection.css'
-import arturoHero from '../../assets/arturo_hero.webp'
-import ossaLogo from '../../assets/ossa_hero.webp'
-import { Button } from '../shared/Button/Button'
+import './HeroSection.css';
+import arturoHero from '../../../assets/arturo_hero.webp';
+import ossaLogo from '../../../assets/ossa_hero.webp';
+import { Button } from '../../../components/shared/Button/Button';
 
 export const HeroSection = () => {
   return (
@@ -17,7 +17,7 @@ export const HeroSection = () => {
         </p>
         <Button variant="cta">Comenzar</Button>
       </div>
-      
+
       <div className="hero__image">
         <img
           src={arturoHero}
@@ -27,5 +27,5 @@ export const HeroSection = () => {
         />
       </div>
     </section>
-  )
-}
+  );
+};

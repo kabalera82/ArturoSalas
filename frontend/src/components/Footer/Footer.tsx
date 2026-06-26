@@ -1,7 +1,7 @@
 import './Footer.css';
 import { useLocation } from 'react-router-dom';
 import { NavLinks } from '../shared/NavLinks/NavLinks';
-import { navItems } from '../../data/navItems';
+import { navItems } from '../shared/NavLinks/navItems';
 import { footItems } from './footItems';
 
 export const Footer = () => {

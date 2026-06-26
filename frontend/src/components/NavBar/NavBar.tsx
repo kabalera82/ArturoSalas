@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
-import { navItems } from '../../data/navItems';
+import { navItems } from '../shared/NavLinks/navItems';
 import menu from '../../assets/menu.png';
 import { NavLinks } from '../shared/NavLinks/NavLinks';
 import { BotonUsuario } from './BotonUsuario/BotonUsuario';

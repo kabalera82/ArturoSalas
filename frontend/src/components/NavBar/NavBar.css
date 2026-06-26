@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 4rem 1rem 2rem;
+  padding: 0.75rem 1rem;
   background: rgba(10, 10, 10, 0.95);
   border-bottom: 1px solid var(--color-gris);
 }
@@ -21,14 +21,14 @@
   font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 800;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 0.5rem;
 }
 
 .navbar_goals {
   color: var(--color-texto);
   font-family: var(--font-display);
   font-size: 1rem;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 0.5rem;
 }
 
 /* Dropdown móvil */
@@ -72,20 +72,21 @@
   height: 1.4rem;
 }
 
-/* Mobile: ocultar botones de icono */
-.navbar_actions > .boton-usuario,
-.navbar_actions > .boton-carrito {
-  display: none;
-}
-
 @media (min-width: 768px) {
-  .navbar_toggle {
-    display: none;
+  .navbar {
+    padding: 1rem 2rem;
   }
 
-  .navbar_actions > .boton-usuario,
-  .navbar_actions > .boton-carrito {
-    display: block;
+  .navbar_brand {
+    padding: 0 0 0 2rem;
+  }
+
+  .navbar_goals {
+    padding: 0 0 0 2rem;
+  }
+
+  .navbar_toggle {
+    display: none;
   }
 
   .navbar_menu {
@@ -94,8 +95,6 @@
     background: transparent;
     border: none;
     box-shadow: none;
-    margin-left: auto;
-    margin-right: 1.5rem;
   }
 
   .navbar_menu .navlinks_list {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { NavItem } from '../../../types/navegacion.types';
+import type { NavItem } from './navItems';
 import './NavLinks.css';
 
 type NavLinksProps = {

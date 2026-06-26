@@ -1,7 +1,7 @@
-import './HomePage.css'
-import { HeroSection } from '../../components/HeroSection/HeroSection'
-import { CardsSection } from '../../components/CardsSection/CardsSection'
-import { videoItems } from './homeItem'
+import './HomePage.css';
+import { HeroSection }   from './HeroSection/HeroSection';
+import { CardsSection }  from './CardsSection/CardsSection';
+import { videoItems }    from './homeItem';
 
 export const HomePage = () => {
   return (
@@ -10,5 +10,5 @@ export const HomePage = () => {
       <HeroSection />
       <CardsSection />
     </div>
-  )
-}
+  );
+};

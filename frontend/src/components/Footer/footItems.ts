@@ -20,5 +20,5 @@ export const footItems: FootItem[] = [
     { imgSrc: threadsImg,      altText: 'Threads',     href: 'https://www.threads.net/@ArturoSalas' },
     { imgSrc: tiktokImg,     altText: 'TikTok',     href: 'https://www.tiktok.com/@ArturoSalas' },
     { imgSrc: whatsappImg,   altText: 'WhatsApp',   href: 'https://wa.me/1234567890' },
-    {imgSrc: youtubeImg,    altText: 'YouTube',     href: 'https://www.youtube.com/@ArturoSalas' }   
+    { imgSrc: youtubeImg,   altText: 'YouTube',     href: 'https://www.youtube.com/@ArturoSalas' }
 ]

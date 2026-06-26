@@ -2,8 +2,6 @@
   position: relative;
 }
 
-/* ── EMPTY ──────────────────────────────────────────────────────────────── */
-
 .boton-carrito__vacio {
   flex: 1;
   display: flex;
@@ -12,8 +10,6 @@
   color: var(--color-texto);
   font-size: 0.9rem;
 }
-
-/* ── ITEMS LIST ─────────────────────────────────────────────────────────── */
 
 .boton-carrito__lista {
   flex: 1;
@@ -53,8 +49,6 @@
   font-size: 0.8rem;
 }
 
-/* ── IMAGE + CONTROLS WRAPPER ───────────────────────────────────────────── */
-
 .boton-carrito__item-derecha {
   display: flex;
   flex-direction: column;
@@ -69,8 +63,6 @@
   border-radius: 0.25rem;
   border: 1px solid var(--color-gris);
 }
-
-/* ── QTY CONTROLS ───────────────────────────────────────────────────────── */
 
 .boton-carrito__item-controles {
   display: flex;
@@ -105,8 +97,6 @@
   text-align: center;
 }
 
-/* ── REMOVE ─────────────────────────────────────────────────────────────── */
-
 .boton-carrito__item-quitar {
   background: transparent;
   border: none;
@@ -120,8 +110,6 @@
 .boton-carrito__item-quitar:hover {
   color: var(--color-terciario);
 }
-
-/* ── FOOTER ─────────────────────────────────────────────────────────────── */
 
 .boton-carrito__footer {
   flex-shrink: 0;
