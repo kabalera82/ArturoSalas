@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import connectDB from './src/shared/db';
 import userRouter from './src/users/auth.routes';
 import productoRouter from './src/products/producto.routes';
+import orderRouter from './src/orders/order.routes';
 
 const app = express();
 
@@ -23,13 +24,14 @@ app.use(cors({
       callback(new Error(`CORS: origen no permitido → ${origin}`));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // --- RUTAS ---
 app.use('/api/users',    userRouter);
 app.use('/api/productos', productoRouter);
+app.use('/api/pedidos',  orderRouter);
 
 app.get('/', (_req, res) => {
   res.json({
