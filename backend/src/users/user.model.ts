@@ -16,6 +16,26 @@ export enum UserStatus {
   BANNED  = 'baneado',
 }
 
+export enum CustomerOrigin {
+  REGULAR       = 'regular',
+  ATHLETE       = 'athlete',
+  ADMIN_CREATED = 'admin_created',
+}
+
+export enum MembershipStatus {
+  INACTIVE = 'inactive',
+  ACTIVE   = 'active',
+  PENDING  = 'pending',
+  EXPIRED  = 'expired',
+}
+
+export enum MembershipPaymentStatus {
+  PENDING   = 'pending',
+  PAID      = 'paid',
+  FAILED    = 'failed',
+  CANCELLED = 'cancelled',
+}
+
 
 // --- INTERFACES ---
 
@@ -36,6 +56,39 @@ export interface IUserProfile {
   addresses:  IShippingAddress[];
 }
 
+export interface IUserCustomer {
+  isCustomer: boolean;
+  origin:     CustomerOrigin;
+  since?:     Date;
+}
+
+export interface IUserSportsProfile {
+  isAthlete:      boolean;
+  isFederated:    boolean;
+  licenseNumber?: string;
+  federationName?: string;
+  clubName?:      string;
+}
+
+export interface IUserMembership {
+  status:      MembershipStatus;
+  monthlyFee?: number;
+  currency:    string;
+  startDate?:  Date;
+  nextDueDate?: Date;
+}
+
+export interface IUserMembershipPayment {
+  period:         string;
+  amount:         number;
+  currency:       string;
+  status:         MembershipPaymentStatus;
+  dueDate:        Date;
+  paidAt?:        Date;
+  paymentMethod?: string;
+  notes?:         string;
+}
+
 export interface IUser {
   username: string;
   email:    string;
@@ -43,6 +96,10 @@ export interface IUser {
   role:     UserRole;
   status:   UserStatus;
   profile:  IUserProfile;
+  customer: IUserCustomer;
+  sportsProfile?: IUserSportsProfile;
+  membership: IUserMembership;
+  membershipPayments: IUserMembershipPayment[];
   metadata: {
     lastLogin?:             Date;
     emailVerified:          boolean;
@@ -73,6 +130,65 @@ const UserProfileSchema = new Schema<IUserProfile>({
   addresses: [DireccionEnvioSchema],
 }, { _id: false });
 
+const UserCustomerSchema = new Schema<IUserCustomer>({
+  isCustomer: { type: Boolean, default: false },
+  origin: {
+    type: String,
+    enum: Object.values(CustomerOrigin),
+    default: CustomerOrigin.REGULAR,
+  },
+  since: { type: Date },
+}, { _id: false });
+
+const UserSportsProfileSchema = new Schema<IUserSportsProfile>({
+  isAthlete:   { type: Boolean, default: false },
+  isFederated: { type: Boolean, default: false },
+  licenseNumber: {
+    type: String,
+    trim: true,
+    validate: {
+      validator(this: IUserSportsProfile, value?: string) {
+        return !this.isFederated || Boolean(value?.trim());
+      },
+      message: 'El número de licencia es obligatorio para deportistas federados',
+    },
+  },
+  federationName: { type: String, trim: true },
+  clubName:       { type: String, trim: true },
+}, { _id: false });
+
+const UserMembershipSchema = new Schema<IUserMembership>({
+  status: {
+    type: String,
+    enum: Object.values(MembershipStatus),
+    default: MembershipStatus.INACTIVE,
+  },
+  monthlyFee:  { type: Number, min: 0 },
+  currency:    { type: String, default: 'EUR', uppercase: true, trim: true },
+  startDate:   { type: Date },
+  nextDueDate: { type: Date },
+}, { _id: false });
+
+const UserMembershipPaymentSchema = new Schema<IUserMembershipPayment>({
+  period: {
+    type: String,
+    required: true,
+    trim: true,
+    match: [/^\d{4}-(0[1-9]|1[0-2])$/, 'El período debe tener formato YYYY-MM'],
+  },
+  amount:   { type: Number, required: true, min: 0 },
+  currency: { type: String, default: 'EUR', uppercase: true, trim: true },
+  status: {
+    type: String,
+    enum: Object.values(MembershipPaymentStatus),
+    default: MembershipPaymentStatus.PENDING,
+  },
+  dueDate:       { type: Date, required: true },
+  paidAt:        { type: Date },
+  paymentMethod: { type: String, trim: true },
+  notes:         { type: String, trim: true },
+}, { _id: true });
+
 
 // --- ESQUEMA PRINCIPAL ---
 
@@ -101,6 +217,28 @@ const userSchema = new Schema<IUser>({
   role:   { type: String, enum: Object.values(UserRole),   default: UserRole.USER },
   status: { type: String, enum: Object.values(UserStatus), default: UserStatus.PENDING },
   profile: { type: UserProfileSchema, required: true },
+  customer: {
+    type: UserCustomerSchema,
+    default: () => ({
+      isCustomer: false,
+      origin: CustomerOrigin.REGULAR,
+    }),
+  },
+  sportsProfile: {
+    type: UserSportsProfileSchema,
+    default: undefined,
+  },
+  membership: {
+    type: UserMembershipSchema,
+    default: () => ({
+      status: MembershipStatus.INACTIVE,
+      currency: 'EUR',
+    }),
+  },
+  membershipPayments: {
+    type: [UserMembershipPaymentSchema],
+    default: [],
+  },
   metadata: {
     lastLogin:            { type: Date },
     emailVerified:        { type: Boolean, default: false },

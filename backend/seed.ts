@@ -1,6 +1,13 @@
 import 'dotenv/config';
 import mongoose from 'mongoose';
-import { User, UserRole, UserStatus } from './src/users/user.model';
+import {
+  CustomerOrigin,
+  MembershipPaymentStatus,
+  MembershipStatus,
+  User,
+  UserRole,
+  UserStatus,
+} from './src/users/user.model';
 import { ProductoModelo, Categoria } from './src/products/producto.model';
 
 const DB_URL = (process.env.DB_URL ?? '')
@@ -22,6 +29,7 @@ const usuarios = [
       firstName: 'Arturo',
       lastName: 'Salas',
       phone: '+34 600 000 001',
+      avatarUrl: 'https://placehold.co/150',
       addresses: [
         {
           calle: 'Calle Mayor 1',
@@ -33,11 +41,33 @@ const usuarios = [
         },
       ],
     },
-    metadata: { emailVerified: true },
+    customer: {
+      isCustomer: false,
+      origin: CustomerOrigin.ADMIN_CREATED,
+      since: new Date('2026-01-01'),
+    },
+    sportsProfile: {
+      isAthlete: false,
+      isFederated: false,
+      federationName: 'No aplica',
+      clubName: 'Arturo Salas Academy',
+    },
+    membership: {
+      status: MembershipStatus.INACTIVE,
+      monthlyFee: 0,
+      currency: 'EUR',
+      startDate: new Date('2026-01-01'),
+      nextDueDate: new Date('2026-01-01'),
+    },
+    membershipPayments: [],
+    metadata: {
+      lastLogin: new Date('2026-06-01'),
+      emailVerified: true,
+    },
   },
   {
-    username: 'cliente',
-    email: 'cliente@example.com',
+    username: 'cliente_regular',
+    email: 'cliente.regular@example.com',
     password: 'Cliente1234!',
     role: UserRole.USER,
     status: UserStatus.ACTIVE,
@@ -45,6 +75,7 @@ const usuarios = [
       firstName: 'Carlos',
       lastName: 'Martínez',
       phone: '+34 600 000 002',
+      avatarUrl: 'https://placehold.co/150',
       addresses: [
         {
           calle: 'Avenida Libertad 45',
@@ -56,7 +87,184 @@ const usuarios = [
         },
       ],
     },
-    metadata: { emailVerified: true },
+    customer: {
+      isCustomer: true,
+      origin: CustomerOrigin.REGULAR,
+      since: new Date('2026-02-01'),
+    },
+    sportsProfile: {
+      isAthlete: false,
+      isFederated: false,
+      federationName: 'No aplica',
+      clubName: 'No aplica',
+    },
+    membership: {
+      status: MembershipStatus.ACTIVE,
+      monthlyFee: 45,
+      currency: 'EUR',
+      startDate: new Date('2026-02-01'),
+      nextDueDate: new Date('2026-07-01'),
+    },
+    membershipPayments: [
+      {
+        period: '2026-05',
+        amount: 45,
+        currency: 'EUR',
+        status: MembershipPaymentStatus.PAID,
+        dueDate: new Date('2026-05-01'),
+        paidAt: new Date('2026-05-02'),
+        paymentMethod: 'tarjeta',
+        notes: 'Cuota mensual abonada correctamente',
+      },
+      {
+        period: '2026-06',
+        amount: 45,
+        currency: 'EUR',
+        status: MembershipPaymentStatus.PAID,
+        dueDate: new Date('2026-06-01'),
+        paidAt: new Date('2026-06-01'),
+        paymentMethod: 'efectivo',
+        notes: 'Pago recibido en recepción',
+      },
+    ],
+    metadata: {
+      lastLogin: new Date('2026-06-10'),
+      emailVerified: true,
+    },
+  },
+  {
+    username: 'deportista_no_federado',
+    email: 'deportista.no.federado@example.com',
+    password: 'Deportista1234!',
+    role: UserRole.USER,
+    status: UserStatus.ACTIVE,
+    profile: {
+      firstName: 'Lucía',
+      lastName: 'Gómez',
+      phone: '+34 600 000 003',
+      avatarUrl: 'https://placehold.co/150',
+      addresses: [
+        {
+          calle: 'Calle Tatami 12',
+          ciudad: 'Valencia',
+          provincia: 'Valencia',
+          codigoPostal: '46001',
+          pais: 'España',
+          esPredeterminada: true,
+        },
+      ],
+    },
+    customer: {
+      isCustomer: true,
+      origin: CustomerOrigin.ATHLETE,
+      since: new Date('2026-03-01'),
+    },
+    sportsProfile: {
+      isAthlete: true,
+      isFederated: false,
+      federationName: 'No federado',
+      clubName: 'Arturo Salas Academy',
+    },
+    membership: {
+      status: MembershipStatus.PENDING,
+      monthlyFee: 50,
+      currency: 'EUR',
+      startDate: new Date('2026-03-01'),
+      nextDueDate: new Date('2026-07-01'),
+    },
+    membershipPayments: [
+      {
+        period: '2026-05',
+        amount: 50,
+        currency: 'EUR',
+        status: MembershipPaymentStatus.PAID,
+        dueDate: new Date('2026-05-01'),
+        paidAt: new Date('2026-05-03'),
+        paymentMethod: 'transferencia',
+        notes: 'Cuota de deportista no federado',
+      },
+      {
+        period: '2026-06',
+        amount: 50,
+        currency: 'EUR',
+        status: MembershipPaymentStatus.PENDING,
+        dueDate: new Date('2026-06-01'),
+        paymentMethod: 'pendiente',
+        notes: 'Pago pendiente de confirmación',
+      },
+    ],
+    metadata: {
+      lastLogin: new Date('2026-06-12'),
+      emailVerified: true,
+    },
+  },
+  {
+    username: 'deportista_federado',
+    email: 'deportista.federado@example.com',
+    password: 'Federado1234!',
+    role: UserRole.PREMIUM,
+    status: UserStatus.ACTIVE,
+    profile: {
+      firstName: 'Miguel',
+      lastName: 'Ruiz',
+      phone: '+34 600 000 004',
+      avatarUrl: 'https://placehold.co/150',
+      addresses: [
+        {
+          calle: 'Paseo del Grappling 7',
+          ciudad: 'Sevilla',
+          provincia: 'Sevilla',
+          codigoPostal: '41001',
+          pais: 'España',
+          esPredeterminada: true,
+        },
+      ],
+    },
+    customer: {
+      isCustomer: true,
+      origin: CustomerOrigin.ATHLETE,
+      since: new Date('2026-01-15'),
+    },
+    sportsProfile: {
+      isAthlete: true,
+      isFederated: true,
+      licenseNumber: 'BJJ-ESP-2026-0001',
+      federationName: 'Federación Española de Jiu-Jitsu Brasileño',
+      clubName: 'Arturo Salas Academy',
+    },
+    membership: {
+      status: MembershipStatus.ACTIVE,
+      monthlyFee: 60,
+      currency: 'EUR',
+      startDate: new Date('2026-01-15'),
+      nextDueDate: new Date('2026-07-01'),
+    },
+    membershipPayments: [
+      {
+        period: '2026-05',
+        amount: 60,
+        currency: 'EUR',
+        status: MembershipPaymentStatus.PAID,
+        dueDate: new Date('2026-05-01'),
+        paidAt: new Date('2026-05-01'),
+        paymentMethod: 'tarjeta',
+        notes: 'Cuota premium federado',
+      },
+      {
+        period: '2026-06',
+        amount: 60,
+        currency: 'EUR',
+        status: MembershipPaymentStatus.PAID,
+        dueDate: new Date('2026-06-01'),
+        paidAt: new Date('2026-06-02'),
+        paymentMethod: 'domiciliación',
+        notes: 'Pago domiciliado correctamente',
+      },
+    ],
+    metadata: {
+      lastLogin: new Date('2026-06-15'),
+      emailVerified: true,
+    },
   },
   {
     username: 'invitado',
@@ -67,9 +275,33 @@ const usuarios = [
     profile: {
       firstName: 'Invitado',
       lastName: 'Demo',
+      phone: '+34 600 000 005',
+      avatarUrl: 'https://placehold.co/150',
       addresses: [],
     },
-    metadata: { emailVerified: false },
+    customer: {
+      isCustomer: false,
+      origin: CustomerOrigin.REGULAR,
+      since: new Date('2026-04-01'),
+    },
+    sportsProfile: {
+      isAthlete: false,
+      isFederated: false,
+      federationName: 'No aplica',
+      clubName: 'No aplica',
+    },
+    membership: {
+      status: MembershipStatus.INACTIVE,
+      monthlyFee: 0,
+      currency: 'EUR',
+      startDate: new Date('2026-04-01'),
+      nextDueDate: new Date('2026-04-01'),
+    },
+    membershipPayments: [],
+    metadata: {
+      lastLogin: new Date('2026-04-01'),
+      emailVerified: false,
+    },
   },
 ];
 

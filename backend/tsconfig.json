@@ -10,6 +10,6 @@
     "allowJs": true,
     "types": ["node"]
   },
-  "include": ["src", "index.ts"],
+  "include": ["src", "index.ts", "seed.ts"],
   "exclude": ["node_modules", "dist"]
 }
