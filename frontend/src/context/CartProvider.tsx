@@ -60,7 +60,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const vaciarCarrito = () => setItems([]);
 
   const totalItems  = useMemo(() => items.reduce((acc, i) => acc + i.cantidad, 0), [items]);
-  const estaVacio   = useMemo(() => items.length === 0, [items]);
+  const estaVacio   = items.length === 0;
   const totalPrecio = useMemo(() => items.reduce((acc, i) => acc + i.precio * i.cantidad, 0), [items]);
 
   return (

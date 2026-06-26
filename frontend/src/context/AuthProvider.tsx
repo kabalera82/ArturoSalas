@@ -17,6 +17,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUsuario(nuevoUsuario);
   };
 
+  const actualizarUsuario = (usuarioActualizado: Usuario) => {
+    localStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
+    setUsuario(usuarioActualizado);
+  };
+
   const cerrarSesion = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
@@ -25,7 +30,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, token, iniciarSesion, cerrarSesion, estaAutenticado: !!token }}>
+    <AuthContext.Provider value={{ usuario, token, iniciarSesion, actualizarUsuario, cerrarSesion, estaAutenticado: !!token }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { login } from '../../services/usuarioService';
+import { useAuth } from '../../../context/AuthContext';
+import { login, obtenerMiUsuario } from '../../../services/usuarioService';
 import './LoginPanel.css';
 
 interface Props {
@@ -21,7 +21,8 @@ export const LoginPanel = ({ alCerrar }: Props) => {
 
     try {
       const datos = await login(usuario, contrasena);
-      iniciarSesion(datos.token, datos.user);
+      const usuarioCompleto = await obtenerMiUsuario(datos.token);
+      iniciarSesion(datos.token, usuarioCompleto);
       alCerrar();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'No se pudo conectar con el servidor');

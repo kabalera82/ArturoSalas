@@ -5,6 +5,7 @@ export interface ContextoAuth {
   usuario: Usuario | null;
   token: string | null;
   iniciarSesion: (token: string, usuario: Usuario) => void;
+  actualizarUsuario: (usuario: Usuario) => void;
   cerrarSesion: () => void;
   estaAutenticado: boolean;
 }

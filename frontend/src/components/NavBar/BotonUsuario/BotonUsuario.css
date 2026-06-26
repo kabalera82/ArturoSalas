@@ -2,8 +2,6 @@
   position: relative;
 }
 
-/* ── AUTENTICADO ─────────────────────────────────────────────────────────── */
-
 .boton-usuario__autenticado {
   display: flex;
   flex-direction: column;
@@ -30,6 +28,16 @@
   padding: 0.5rem 0.75rem;
   text-align: left;
   transition: border-color 0.2s, color 0.2s;
+}
+
+.boton-usuario__panel {
+  border: 1px solid var(--color-terciario);
+  border-radius: 0.3rem;
+  color: var(--color-primario);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  padding: 0.55rem 0.75rem;
+  text-transform: uppercase;
 }
 
 .boton-usuario__salir:hover {

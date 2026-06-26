@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { usePanelFlotante } from '../../../hooks/usePanelFlotante';
 import { BotonIcono } from '../../shared/BotonIcono/BotonIcono';
-import { LoginPanel } from '../../Auth/LoginPanel';
+import { LoginPanel } from './LoginPanel';
 import persona from '../../../assets/person_34dp_1F1F1F_FILL0_wght400_GRAD0_opsz40.svg';
 import './BotonUsuario.css';
 
@@ -23,6 +24,9 @@ export const BotonUsuario = () => {
           {estaAutenticado ? (
             <div className='boton-usuario__autenticado'>
               <p className='boton-usuario__saludo'>Hola, <strong>{usuario?.username}</strong></p>
+              <Link className='boton-usuario__panel' to='/cuenta' onClick={cerrar}>
+                Ver panel completo
+              </Link>
               <button
                 className='boton-usuario__salir'
                 type='button'
